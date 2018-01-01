@@ -173,6 +173,35 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  // I: string
+  // O: Boolean
+  // 'abcba' > true
+  // 'aaa' > true
+  // 'adedb' > false
+
+  let cleanString = string.split(" ").join("").toLowerCase();
+
+  if (cleanString <= 1) {
+    return true;
+  } else if (cleanString.slice(0,1) !== cleanString.slice(-1)) {
+    return false;
+  } else {
+    return palindrome(cleanString.slice(1,-1));
+  }
+
+  // ************ for loop ************ //
+  // let output = true;
+
+  // let iterations = Math.floor(cleanString.length / 2);
+
+  // for (var i = 0; i < iterations; i++) {
+  //   if(cleanString[i] !== cleanString[cleanString.length-1-i]) {
+  //     output = false;
+  //     break;
+  //   }
+  // }
+
+  // return output;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
