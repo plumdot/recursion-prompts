@@ -288,8 +288,45 @@ var divide = function(x, y) {
 // gcd(4,36); // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+// Brute Force
+// const gcd = function(x, y) {
+//     return tryDivisor(x,y,y);
+// };
+//
+// const tryDivisor = function(m, n, g) {
+//     if (((m % g) == 0) && ((n % g) == 0)) {
+//         return g;
+//     } else {
+//         return tryDivisor(m, n, g-1);
+//     }
+// }
+// This works, but for large numbers, this could take a while.
+
+// Euclid's Algorithm
+// const gcd = function(x, y) {
+//     if ((x % y) === 0) {
+//         return y;
+//     } else {
+//         return gcd(y, x % y);
+//     }
+// };
+// Euclid's GCD algorithm is very fast, but divison (taking remainders) is a more time-consuming operation than simple addition and subtraction. 
+
+// Dijkstra's Algorithm
 var gcd = function(x, y) {
+  if (x < 0 || y < 0) {
+    return null;
+  }
+
+  if (x === y) {
+      return x;
+  } else if ( x > y) {
+      return gcd(x-y, y);
+  } else {
+      return gcd(x, y-x);
+  }
 };
+//This does accomplish the calculation with no division.
 
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
