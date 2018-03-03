@@ -292,7 +292,7 @@ var divide = function(x, y) {
 // const gcd = function(x, y) {
 //     return tryDivisor(x,y,y);
 // };
-//
+
 // const tryDivisor = function(m, n, g) {
 //     if (((m % g) == 0) && ((n % g) == 0)) {
 //         return g;
@@ -371,6 +371,17 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+
+	if (array.length === 0) {
+		return [];
+	} 
+
+	let output = [array[array.length-1]];
+
+	output = output.concat(reverseArr(array.slice(0, array.length - 1)));
+
+	return output;
+
 };
 
 // 18. Create a new array with a given value and length.
