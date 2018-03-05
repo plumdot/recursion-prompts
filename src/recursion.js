@@ -388,6 +388,15 @@ var reverseArr = function(array) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+	if (length === 0) {
+		return [];
+	}
+
+	let output = [value];
+
+	output = output.concat(buildList(value, length - 1));
+
+	return output;
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
@@ -396,17 +405,56 @@ var buildList = function(value, length) {
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function(n) {
+	
+	// fizzBuzz(3)
+	// fizzBuzz(2)
+	// fizzBuzz(1)  
+	
+	// ['1']
+	// ['1', '2']
+	// ['1', '2', 'Fizz']
+	
+	// console.log('n: ', n);
+
+	if (n === 0) {
+		return [];
+	}
+
+	let output = [];
+	output.push(fizzBuzzPicker(n));
+	output = fizzBuzz(n-1).concat(output);
+	return output;
+
 };
+
+var fizzBuzzPicker = function(n) {
+	if ((n % 5 === 0) && (n % 3 === 0)) {
+		return 'FizzBuzz';
+	} else if (n % 5 === 0) {
+		return 'Buzz';
+	} else if (n % 3 === 0) {
+		return 'Fizz';
+	} else {
+		return JSON.stringify(n);
+		// return String(n);
+	}
+}
 
 // 20. Count the occurence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  if (array.length === 0) {
+		return 0;
+	}
+	var noOfOccr = (array[0] === value) + countOccurrence(array.slice(1), value);
+	return noOfOccr;
 };
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  
 };
 
 // 22. Write a function that counts the number of times a key occurs in an object.
