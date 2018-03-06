@@ -474,6 +474,21 @@ var timesTwo = function(n) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+	
+	var count = 0;
+	
+	for (element in obj) {
+
+		if (element === key) {
+			count++;
+		}
+
+		if (typeof obj[element] === 'object') {
+			count += countKeysInObj( obj[element], key);
+		} 
+	}
+
+	return count;
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
