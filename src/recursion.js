@@ -600,6 +600,18 @@ var capitalizeWords = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+  let sum = 0;
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      sum += nestedEvenSum(obj[key]);
+    }
+
+    if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+      sum += obj[key]
+    }
+  }
+
+  return sum;
 };
 
 // 30. Flatten an array containing nested arrays.
